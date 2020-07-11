@@ -100,6 +100,11 @@ class PostComponent extends Component {
                 <Button color="#19AC52" onPress={() => this.deleteBoard(item.key)} 
                         title='delete'
                  />
+                  <Button title='edit' onPress={() => {
+              this.props.navigation.navigate('EditPost',{
+                boardkey: item.key
+              });
+            }}/>
                 
             
             

@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
         
     },
     logout:{
-        bottom: 270,
-        right: -140,
-        marginTop: 32,
-        backgroundColor: "#ADD8E6"
+        // bottom: 270,
+        // right: -140,
+        // marginTop: 32,
+        // backgroundColor: "#ADD8E6"
     },
     email: {
          bottom: -50,

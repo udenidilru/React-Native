@@ -17,6 +17,7 @@ import LoginComponent from './components/LoginComponent'
 import SignupComponent from './components/SignupComponent'
 import AddnoticeComponent from './components/AddnoticeComponent'
 import PostComponent from './components/PostComponent'
+import EditComponent from './components/EditComponent'
 import { Icon } from 'react-native-elements'
 
 const AppTabNavigator = createBottomTabNavigator(
@@ -54,6 +55,7 @@ export default createAppContainer(
     Loading:LoadingComponent,
     App: AppTabNavigator,
     Auth: AuthStack,
+    EditPost: EditComponent
   },
   {
     initialRouteName: "Loading"
