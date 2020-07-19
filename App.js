@@ -11,7 +11,6 @@ import {
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import{createStackNavigator} from 'react-navigation-stack'
-import HomeComponent from './components/HomeComponent'
 import LoadingComponent from './components/LoadingComponent'
 import LoginComponent from './components/LoginComponent'
 import SignupComponent from './components/SignupComponent'
@@ -23,10 +22,7 @@ import { Icon } from 'react-native-elements'
 const AppTabNavigator = createBottomTabNavigator(
  
     {
-      Home: {
-        screen: HomeComponent,
-       
-      },
+      
       Post: {
         screen: PostComponent,
         
@@ -39,7 +35,13 @@ const AppTabNavigator = createBottomTabNavigator(
     },
   
     {
-     
+      tabBarOptions: {
+        labelStyle: {
+          fontSize: 15,
+          margin: 0,
+          padding: 20,
+        },
+      }
     }
 
 );

@@ -36,7 +36,7 @@ export default class SignupComponent extends React.Component {
         return (
             <View style={styles.container}>
             <StatusBar barStyle="light-content"></StatusBar>
-                <Text style={styles.greeting}>{'Hello.\nSign up to get Started.'}</Text>
+                {/* <Text style={styles.greeting}>{'Hello.\nSign up to get Started.'}</Text> */}
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#E9446A",
+        backgroundColor: "#008000",
         borderRadius: 4,
         height: 52,
         alignItems: "center",

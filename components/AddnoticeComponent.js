@@ -63,11 +63,7 @@ class AddnoticeComponent extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.inputGroup}>
-        <TextInput
-              placeholder={'Title'}
-              value={this.state.title}
-              onChangeText={(val) => this.inputValueUpdate(val, 'title')}
-          />
+       
           <TextInput
               placeholder={'Post'}
               value={this.state.post}
@@ -77,9 +73,9 @@ class AddnoticeComponent extends Component {
         
         <View style={styles.button}>
           <Button
-            title='Add Post'
+            title='Save'
             onPress={() => this.storePost()} 
-            color="#19AC52"
+            color="#1E90FF"
           />
         </View>
       </ScrollView>

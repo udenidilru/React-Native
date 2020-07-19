@@ -80,12 +80,7 @@ export default class EditComponent extends React.Component {
              <ScrollView>
              <View style={styles.container}>
         <View style={styles.inputGroup}>
-        <TextInput
-       
-              placeholder={'Title'}
-              value={this.state.title}
-              onChangeText={(text) => this.updateTextInput(text, 'title')}
-          />
+        
           <TextInput
               placeholder={'Post'}
               numberOfLines={4}
@@ -97,7 +92,7 @@ export default class EditComponent extends React.Component {
         
         <View>
           <Button style={{width:10}}
-            title='Update Post'
+            title='Update'
             onPress={() => this.updateBoard()} 
             color="#19AC52"
           />
@@ -112,6 +107,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 20,
+      marginTop: 100
     },
     subContainer: {
       flex: 1,

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { Alert,StyleSheet, ScrollView, ActivityIndicator, View ,Text,Image} from 'react-native';
+import { Alert,StyleSheet,TouchableOpacity, ScrollView, ActivityIndicator, View ,Text,Image} from 'react-native';
 import { ListItem } from 'react-native-elements'
 import firestore from '@react-native-firebase/firestore';
 import { Icon ,Card, Button} from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
+import firebase from '@react-native-firebase/app';
 
 
 class PostComponent extends Component {
 
+  state = {
+    email: "",
+    displayName: ""
+};
   constructor() {
     super();
     this.firestoreRef = firestore().collection('posts').orderBy('createdAt', 'desc');
@@ -19,7 +24,13 @@ class PostComponent extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.firestoreRef.onSnapshot(this.getCollection);
+    const {email,displayName} = firebase.auth().currentUser;
+
+        this.setState({email,displayName});
   }
+  signOutUser = () => {
+    firebase.auth().signOut();
+}
 
   componentWillUnmount(){
     this.unsubscribe();
@@ -59,6 +70,7 @@ class PostComponent extends Component {
   }
 
   render() {
+   // LayoutAnimation.easeInEaseOut();
     if(this.state.isLoading){
       return(
         <View style={styles.preloader}>
@@ -67,7 +79,11 @@ class PostComponent extends Component {
       )
     }    
     return (
+      
       <ScrollView style={styles.container}>
+      <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
           {
             this.state.userArr.map((item, i) => {
               return (
@@ -79,9 +95,8 @@ class PostComponent extends Component {
                   bottomDivider
                   subtitle={
                     <View>
-                    <Text style={{marginTop:-40,marginLeft:30}}>Author: {item.author}</Text>
-                     <Text style={{marginTop:10,fontWeight: "bold",marginLeft:30}}>title: {item.title}</Text>
-                     <Text style={{marginTop:5,marginLeft:30}}>Post: {item.post}</Text>
+                    <Text style={{marginTop:-40,marginLeft:30,fontWeight: "bold"}}>Author: {item.author}</Text>
+                     <Text style={{marginTop:5,marginLeft:30}}>{item.post}</Text>
                   </View>
                     }
                     
@@ -96,7 +111,7 @@ class PostComponent extends Component {
 
                   {
                     item.author == auth().currentUser.displayName ?
-                <View style={{flexDirection:'row',marginTop:5, marginLeft:50}}>
+                <View style={{flexDirection:'row',marginTop:5, marginLeft:50,marginRight:50}}>
                 <Button color="#19AC52" onPress={() => this.deleteBoard(item.key)} 
                         title='delete'
                  />
@@ -142,6 +157,13 @@ const styles = StyleSheet.create({
   post: {
     padding: 20
   },
+  logout: {
+    marginLeft: 250,
+    backgroundColor: "#1E90FF",
+    padding: 10,
+    width: 70,
+    marginTop: 10
+  }
   
 })
 
